@@ -20,6 +20,7 @@
 
 import json
 import random
+import string
 import urllib.request
 
 # Server API URLs
@@ -54,10 +55,11 @@ if __name__ == "__main__":
         quotes = json.loads(urllib.request.urlopen(QUERY.format(random.random())).read())
 
         """ ----------- Update to get the ratio --------------- """
-        price = {}
+        prices = {}
         for quote in quotes:
             stock, bid_price, ask_price, price = getDataPoint(quote)
-            price[stock] = price
+            print(stock)
+            prices[stock] = price
             print("Quoted %s at (bid:%s, ask:%s, price:%s)" % (stock, bid_price, ask_price, price))
 
-        print("Ratio %s" % getRatio(price['ABC'], price['DEF']))
+        print("Ratio %s" % getRatio(prices['ABC'], prices['DEF']))
